@@ -25,9 +25,7 @@ public:
     bool bigger(Integer *b);
     bool equal(Integer *b);
 private:
-    bool isPositive;
-    unsigned int abs;
+    long value;
 };
 
 #endif //FINAL_INTEGER_H
-
