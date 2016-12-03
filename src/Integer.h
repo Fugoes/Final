@@ -23,6 +23,7 @@ public:
     void minus(Integer *b);
     void times(Integer *b);
     bool bigger(Integer *b);
+    bool smaller(Integer *b);
     bool equal(Integer *b);
 private:
     long value;

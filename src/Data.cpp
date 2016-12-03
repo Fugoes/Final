@@ -34,7 +34,6 @@ void Data::uncite(Data *data) {
 void Data::check(Data *data) {
     if (data->cited == 0) {
         delete data;
-        data = NULL;
     }
 }
 
@@ -64,6 +63,7 @@ Data *Data::plus(std::list<Data *> *paraData) {
         check(i);
     }
     delete paraData;
+    delete todo;
     return result;
 }
 
@@ -78,6 +78,7 @@ Data *Data::times(std::list<Data *> *paraData) {
     for (auto & i: *todo) {
         check(i);
     }
+    delete todo;
     delete paraData;
     return result;
 }
@@ -90,30 +91,31 @@ Data *Data::bigger(std::list<Data *> *paraData) {
     if (((Integer*)((*cursora)->value))->bigger((Integer*)((*cursorb)->value))) {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("true");
     } else {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("false");
     }
-    delete paraData;
 }
 
 Data *Data::smaller(std::list<Data *> *paraData) {
-    auto cursorb = paraData->begin();
-    auto cursora = --paraData->end();
+    auto cursorb = paraData->begin(); auto cursora = --paraData->end();
     assert((*cursora)->type == 2);
     assert((*cursorb)->type == 2);
-    if (((Integer*)((*cursora)->value))->bigger((Integer*)((*cursorb)->value))) {
+    if (((Integer*)((*cursora)->value))->smaller((Integer*)((*cursorb)->value))) {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("true");
     } else {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("false");
     }
-    delete paraData;
 }
 
 Data *Data::equal(std::list<Data *> *paraData) {
@@ -124,13 +126,14 @@ Data *Data::equal(std::list<Data *> *paraData) {
     if (((Integer*)((*cursora)->value))->equal((Integer*)((*cursorb)->value))) {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("true");
     } else {
         Data::check(*cursora);
         Data::check(*cursorb);
+        delete paraData;
         return new Data("false");
     }
-    delete paraData;
 }
 
 Data *Data::minus(std::list<Data *> *paraData) {
@@ -148,6 +151,7 @@ Data *Data::minus(std::list<Data *> *paraData) {
         check(i);
     }
     delete paraData;
+    delete todo;
     return result;
 }
 

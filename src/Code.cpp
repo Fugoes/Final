@@ -52,4 +52,7 @@ void Code::FinalShell() {
         delete bracket;
         std::cout << ">>> ";
     }
+    delete runtime;
+    delete temp;
+    delete pos;
 }

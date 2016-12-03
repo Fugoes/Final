@@ -36,3 +36,7 @@ void Integer::minus(Integer *b) {
     value -= b->value;
 }
 
+bool Integer::smaller(Integer *b) {
+    return value < b->value;
+}
+

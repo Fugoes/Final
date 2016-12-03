@@ -32,6 +32,10 @@ Data *Function::eval(std::list<Data*>* parasData) {
         bracketsCursor++;
     }
     result = (*bracketsCursor)->eval(runtime);
+    for (auto & i: *parasData) {
+        Data::check(i);
+    }
+    delete parasData;
     delete runtime;
     return result;
 }
