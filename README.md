@@ -100,7 +100,7 @@ true
 89
 ```
 
-In function, you cannot use variable define outside the function.
+In a function, you cannot use variables defined outside that function.
 
 # License
 
