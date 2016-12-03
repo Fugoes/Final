@@ -27,6 +27,8 @@ public:
     static Data* bigger(std::list<Data*>* paraData);
     static Data* smaller(std::list<Data*>* paraData);
     static Data* equal(std::list<Data*>* paraData);
+    static Data* print(std::list<Data*>* paraData);
+    void print();
 
     void display();
 

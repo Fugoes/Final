@@ -150,3 +150,27 @@ Data *Data::minus(std::list<Data *> *paraData) {
     delete paraData;
     return result;
 }
+
+Data *Data::print(std::list<Data *> *paraData) {
+    for (auto & i: *paraData) {
+        if (i->type == 0) {
+            std::cout << "false";
+        } else if (i->type == 1) {
+            std::cout << "true";
+        } else if (i->type == 2) {
+            ((Integer*)i->value)->print();
+        }
+        std::cout << std::endl;
+    }
+    return new Data("true");
+}
+
+void Data::print() {
+    if (type == 0) {
+        std::cout << "false";
+    } else if (type == 1) {
+        std::cout << "true";
+    } else if (type == 2) {
+        ((Integer*)value)->print();
+    }
+}

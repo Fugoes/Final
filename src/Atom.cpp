@@ -81,6 +81,8 @@ Data *Bracket::eval(Runtime *runtime) {
         result = Data::bigger(genParaData(runtime));
     } else if (func == "<") {
         result = Data::smaller(genParaData(runtime));
+    } else if (func == "print") {
+        result = Data::print(genParaData(runtime));
     } else if (func == "assign") {
         runtime->assignVar( ((Symbol*)(*para.begin()))->name,
                             (*(++para.begin()))->eval(runtime) );

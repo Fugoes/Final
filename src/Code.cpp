@@ -24,11 +24,10 @@ bool isValidCode(std::string & str) {
 
 
 void Code::FinalShell() {
-    std::cout << "Welcome to Final Shell!" << std::endl;
+    std::cout << "Final Is Not Another Lisp!" << std::endl;
     std::cout << ">>> ";
 
-    auto runtime = new Runtime();
-    auto sourceCode = new std::string;
+    auto runtime = new Runtime(); auto sourceCode = new std::string;
     auto temp = new std::string;
     auto pos = new unsigned long(0);
     Bracket* bracket;
@@ -48,7 +47,8 @@ void Code::FinalShell() {
         }
         *pos = 0;
         bracket = new Bracket(*sourceCode, *pos);
-        bracket->eval(runtime)->display();
+        bracket->eval(runtime)->print();
+        std::cout << std::endl;
         delete bracket;
         std::cout << ">>> ";
     }
