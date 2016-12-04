@@ -65,6 +65,10 @@ The binary file will be `Final` under linux and `Final.exe` under Windows.
 
 * `(display <expression1> ... <expressionn>)`
 
+* `(runtime)`
+
+  This command will display all variables in your run time.
+
 
 ## Use variable
 
