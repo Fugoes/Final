@@ -36,13 +36,18 @@ The binary file will be `Final` under linux and `Final.exe` under Windows.
 
   Note that the number of parameters can be arbitrary.
 
+* `(- <expression1> <expression2>)`
+
+  Only accept two parameters and return `<expression1> - <expression2>`.
+
 * `(* <expressions>)`
 
   Similar to `+`.
 
-* `(- <expression1> <expression2>)`
+* `(/ <expression1> <expression2>)`
 
-  Only accept two parameters and return `<expression1> - <expression2>`.
+* `(% <expression1> <expression2>)`
+
 
 * `(> <expression1> <expression2>)`, `(< <expression1> <expression2>)`, `(= <expression1> <expression2>)`
 
@@ -57,6 +62,8 @@ The binary file will be `Final` under linux and `Final.exe` under Windows.
   Execute `<expression1>` to `<expressionn>` one by one, and return the last expression's value.
 
 * `(print <expression1> ... <expressionn>)`
+
+* `(display <expression1> ... <expressionn>)`
 
 
 ## Use variable

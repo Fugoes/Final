@@ -7,13 +7,9 @@
 VarEnv::VarEnv() {}
 
 VarEnv::~VarEnv() {
-    std::list<Data*> todo(0);
-    for (auto & i: vars) {
+    for (auto &i: vars) {
         (i.second)->uncite();
-        todo.push_back(i.second);
-    }
-    for (auto & i: todo) {
-        Data::check(i);
+        Data::check(i.second);
     }
 }
 
@@ -34,12 +30,12 @@ void VarEnv::assignVar(const std::string &name, Data *data) {
         Data::check(search->second);
         search->second = data;
     } else {
-        vars.insert(std::pair<std::string, Data*>(name, data));
+        vars.insert(std::pair<std::string, Data *>(name, data));
     }
 }
 
 void VarEnv::display() {
-    for (auto & i: vars) {
+    for (auto &i: vars) {
         std::cout << std::endl;
         std::cout << "name : " << i.first << std::endl;
         i.second->display();

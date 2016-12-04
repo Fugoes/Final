@@ -15,8 +15,9 @@ class Code;
 class Code {
 public:
     static void FinalShell();
+
 private:
-    std::list<std::string*> brackets;
+    std::list<std::string *> brackets;
 };
 
 #endif //FINAL_CODE_H

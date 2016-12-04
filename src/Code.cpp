@@ -4,7 +4,7 @@
 
 #include "Code.h"
 
-bool isValidCode(std::string & str) {
+bool isValidCode(std::string &str) {
     unsigned long i = 0;
     long count = 0;
     for (i = 0; i < str.length(); i++) {
@@ -17,7 +17,7 @@ bool isValidCode(std::string & str) {
     assert(count >= 0);
     if (count == 0) {
         return true;
-    } else if (count > 0){
+    } else if (count > 0) {
         return false;
     }
 }
@@ -26,11 +26,11 @@ bool isValidCode(std::string & str) {
 void Code::FinalShell() {
     std::cout << "Final Is Not Another Lisp!" << std::endl;
     std::cout << ">>> ";
-
-    auto runtime = new Runtime(); auto sourceCode = new std::string;
+    auto runtime = new Runtime();
+    auto sourceCode = new std::string;
     auto temp = new std::string;
     auto pos = new unsigned long(0);
-    Bracket* bracket;
+    Bracket *bracket;
     while (true) {
         std::getline(std::cin, *sourceCode);
         while (!isValidCode(*sourceCode)) {
@@ -48,8 +48,8 @@ void Code::FinalShell() {
         *pos = 0;
         bracket = new Bracket(*sourceCode, *pos);
         bracket->eval(runtime)->print();
-        std::cout << std::endl;
         delete bracket;
+        std::cout << std::endl;
         std::cout << ">>> ";
     }
     delete runtime;

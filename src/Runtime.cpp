@@ -9,7 +9,7 @@ Runtime::Runtime() {
 }
 
 Runtime::~Runtime() {
-    for (auto & i: varEnvs) {
+    for (auto &i: varEnvs) {
         if (i != NULL) {
             delete i;
         }
@@ -27,7 +27,7 @@ void Runtime::assignVar(std::string &name, Data *data) {
 
 Data *Runtime::getVar(std::string &name) {
     auto cursor = varEnvs.begin();
-    Data* result = NULL;
+    Data *result = NULL;
     while (result == NULL) {
         if ((*cursor) == NULL) {
             cursor++;
@@ -43,8 +43,8 @@ void Runtime::pushVarEnv() {
 }
 
 void Runtime::popVarEnv() {
-    if ((*varEnvs.begin()) != NULL) {
-        delete *varEnvs.begin();
+    if ((*(varEnvs.begin())) != NULL) {
+        delete (*(varEnvs.begin()));
     }
     varEnvs.pop_front();
 }
@@ -55,4 +55,12 @@ void Runtime::assignVarToTop(std::string &name, Data *data) {
         *cursor = new VarEnv();
     }
     (*cursor)->assignVar(name, data);
+}
+
+void Runtime::display() {
+    for (auto &i: varEnvs) {
+        if (i != NULL) {
+            i->display();
+        }
+    }
 }

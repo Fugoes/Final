@@ -6,7 +6,9 @@
 #define FINAL_ATOM_H
 
 class Atom;
+
 class Bracket;
+
 class Symbol;
 
 #include <vector>
@@ -23,42 +25,60 @@ class Symbol;
 class Atom {
 public:
     Atom() {};
+
     virtual ~Atom() {};
+
     virtual void display(int indent) = 0;
-    virtual Data* eval(Runtime * runtime) = 0;
-    virtual Atom* copy() = 0;
+
+    virtual Data *eval(Runtime *runtime) = 0;
+
+    virtual Atom *copy() = 0;
 };
 
-class Bracket: public Atom {
+class Bracket : public Atom {
 public:
     Bracket(const std::string &str, unsigned long &pos);
+
     Bracket();
+
     virtual ~Bracket();
+
     virtual void display(int indent);
-    virtual Data* eval(Runtime * runtime);
-    virtual Atom* copy();
+
+    virtual Data *eval(Runtime *runtime);
+
+    virtual Atom *copy();
+
 private:
     std::string func;
-    std::list<Atom*> para;
+    std::list<Atom *> para;
 
-    std::vector<Data*>* genParaData(Runtime *runtime);
+    std::vector<Data *> *genParaData(Runtime *runtime);
 
     friend class Runtime;
+
     friend class Function;
 };
 
-class Symbol: public Atom {
+class Symbol : public Atom {
 public:
     Symbol(const std::string &str);
+
     virtual ~Symbol();
+
     virtual void display(int indent);
-    virtual Data* eval(Runtime * runtime);
-    virtual Atom* copy();
+
+    virtual Data *eval(Runtime *runtime);
+
+    virtual Atom *copy();
+
 private:
     std::string name;
 
     friend class Runtime;
+
     friend class Bracket;
+
     friend class Function;
 };
 

@@ -16,15 +16,20 @@ class Function;
 class Function {
 public:
     Function();
+
     ~Function();
-    static void newFunction(std::list<Atom*>* source);
-    Data* eval(std::vector<Data*>* parasData);
-    static Data* call(std::string & name, std::vector<Data*>* parasData);
+
+    static void newFunction(std::list<Atom *> *source);
+
+    Data *eval(std::vector<Data *> *parasData);
+
+    static Data *call(std::string &name, std::vector<Data *> *parasData);
+
 private:
     std::list<std::string> paras;
-    std::list<Atom*> body;
+    std::list<Atom *> body;
 
-    static std::map<std::string, Function*> FuncEnv;
+    static std::map<std::string, Function *> FuncEnv;
 };
 
 #endif //FINAL_FUNCTION_H

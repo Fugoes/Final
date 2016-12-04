@@ -4,19 +4,19 @@
 
 #include "Function.h"
 
-std::map<std::string, Function*> Function::FuncEnv;
+std::map<std::string, Function *> Function::FuncEnv;
 
 Function::~Function() {
-    for (auto & i: body) {
+    for (auto &i: body) {
         delete i;
         i = NULL;
     }
 }
 
-Function::Function() { }
+Function::Function() {}
 
-Data *Function::eval(std::vector<Data*>* parasData) {
-    Data* result;
+Data *Function::eval(std::vector<Data *> *parasData) {
+    Data *result;
     auto runtime = new Runtime();
     auto parasCursor = paras.begin();
     auto parasDataCursor = parasData->begin();
@@ -32,7 +32,7 @@ Data *Function::eval(std::vector<Data*>* parasData) {
         bracketsCursor++;
     }
     result = (*bracketsCursor)->eval(runtime);
-    for (auto & i: *parasData) {
+    for (auto &i: *parasData) {
         Data::check(i);
     }
     delete parasData;
@@ -40,20 +40,20 @@ Data *Function::eval(std::vector<Data*>* parasData) {
     return result;
 }
 
-void Function::newFunction(std::list<Atom*>* source) {
+void Function::newFunction(std::list<Atom *> *source) {
     auto cursor = source->begin();
-    auto name = ((Bracket*)(*cursor))->func;
+    auto name = ((Bracket *) (*cursor))->func;
     auto function = new Function;
-    for (auto & i: ((Bracket*)(*cursor))->para) {
-        function->paras.push_back( ((Symbol*)i)->name );
+    for (auto &i: ((Bracket *) (*cursor))->para) {
+        function->paras.push_back(((Symbol *) i)->name);
     }
     cursor++;
     while (cursor != source->end()) {
         function->body.push_back((*cursor)->copy());
         cursor++;
     }
-    FuncEnv.insert(std::pair<std::string, Function*>(name, function));
-    for (auto & i: *source) {
+    FuncEnv.insert(std::pair<std::string, Function *>(name, function));
+    for (auto &i: *source) {
         if (i != NULL) {
             delete i;
             i = NULL;
@@ -66,6 +66,6 @@ Data *Function::call(std::string &name, std::vector<Data *> *parasData) {
     if (search != FuncEnv.end()) {
         return search->second->eval(parasData);
     } else {
-        return Data::newData("false");
+        return Data::falseData;
     }
 }

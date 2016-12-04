@@ -15,25 +15,23 @@ class Runtime;
 class Runtime {
 public:
     Runtime();
+
     ~Runtime();
-    void assignVar(std::string & name, Data* data);
-    void assignVarToTop(std::string & name, Data* data);
-    Data* getVar(std::string & name);
+
+    void assignVar(std::string &name, Data *data);
+
+    void assignVarToTop(std::string &name, Data *data);
+
+    Data *getVar(std::string &name);
+
     void pushVarEnv();
+
     void popVarEnv();
-    void display() {
-        for (auto & i: varEnvs) {
-            if (i != NULL) {
-                i->display();
-            }
-        }
-    }
-    /*
-     * run bracket and do bracket++
-     */
-//    Data* run(std::list<Bracket*>::iterator bracket);
+
+    void display();
+
 private:
-    std::forward_list<VarEnv*> varEnvs;
+    std::forward_list<VarEnv *> varEnvs;
 };
 
 #endif //FINAL_RUNTIME_H
