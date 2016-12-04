@@ -49,7 +49,7 @@ void Runtime::popVarEnv() {
     varEnvs.pop_front();
 }
 
-void Runtime::assingVarToTop(std::string &name, Data *data) {
+void Runtime::assignVarToTop(std::string &name, Data *data) {
     auto cursor = varEnvs.begin();
     if ((*cursor) == NULL) {
         *cursor = new VarEnv();

@@ -1,42 +1,32 @@
 //
-// Created by fugoes on 12/2/16.
+// Created by fugoes on 12/4/16.
 //
 
-#include "Integer.h"
+#include "Data.h"
 
-Integer::Integer(const std::string &str) {
-    std::stringstream temp;
-    temp << str;
-    temp >> value;
+Integer::~Integer() { }
+
+Integer::Integer() {
+    value = 0;
 }
-
-Integer::~Integer() {}
 
 void Integer::print() {
     std::cout << value;
 }
 
-void Integer::plus(Integer *b) {
-    value += b->value;
+void Integer::display() {
+    std::cout << "type : Integer" << std::endl;
+    std::cout << "value: " << value << std::endl;
 }
 
-void Integer::times(Integer *b) {
-    value *= b->value;
+Integer::Integer(const long &value) {
+    this->value = value;
 }
 
-bool Integer::bigger(Integer *b) {
-    return value > b->value;
+Data *Integer::plus(std::vector<Data *> &dataPara) {
+    auto result = new Integer(0);
+    for (int i = 0; i < dataPara.size(); i++) {
+        result->value += (dynamic_cast<Integer*>(dataPara[i]))->value;
+    }
+    return result;
 }
-
-bool Integer::equal(Integer *b) {
-    return value == b->value;
-}
-
-void Integer::minus(Integer *b) {
-    value -= b->value;
-}
-
-bool Integer::smaller(Integer *b) {
-    return value < b->value;
-}
-

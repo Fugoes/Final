@@ -18,8 +18,8 @@ public:
     Function();
     ~Function();
     static void newFunction(std::list<Atom*>* source);
-    Data* eval(std::list<Data*>* parasData);
-    static Data* call(std::string & name, std::list<Data*>* parasData);
+    Data* eval(std::vector<Data*>* parasData);
+    static Data* call(std::string & name, std::vector<Data*>* parasData);
 private:
     std::list<std::string> paras;
     std::list<Atom*> body;

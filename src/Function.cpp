@@ -15,13 +15,13 @@ Function::~Function() {
 
 Function::Function() { }
 
-Data *Function::eval(std::list<Data*>* parasData) {
+Data *Function::eval(std::vector<Data*>* parasData) {
     Data* result;
     auto runtime = new Runtime();
     auto parasCursor = paras.begin();
     auto parasDataCursor = parasData->begin();
     while (parasCursor != paras.end()) {
-        runtime->assingVarToTop(*parasCursor, *parasDataCursor);
+        runtime->assignVarToTop(*parasCursor, *parasDataCursor);
         parasCursor++;
         parasDataCursor++;
     }
@@ -61,11 +61,11 @@ void Function::newFunction(std::list<Atom*>* source) {
     }
 }
 
-Data *Function::call(std::string &name, std::list<Data *> *parasData) {
+Data *Function::call(std::string &name, std::vector<Data *> *parasData) {
     auto search = FuncEnv.find(name);
     if (search != FuncEnv.end()) {
         return search->second->eval(parasData);
     } else {
-        return new Data("false");
+        return Data::newData("false");
     }
 }

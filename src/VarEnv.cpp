@@ -9,7 +9,7 @@ VarEnv::VarEnv() {}
 VarEnv::~VarEnv() {
     std::list<Data*> todo(0);
     for (auto & i: vars) {
-        Data::uncite(i.second);
+        (i.second)->uncite();
         todo.push_back(i.second);
     }
     for (auto & i: todo) {
@@ -28,9 +28,9 @@ Data *VarEnv::getVar(const std::string &name) {
 
 void VarEnv::assignVar(const std::string &name, Data *data) {
     auto search = vars.find(name);
-    Data::cite(data);
+    data->cite();
     if (search != vars.end()) {
-        Data::uncite(search->second);
+        (search->second)->uncite();
         Data::check(search->second);
         search->second = data;
     } else {

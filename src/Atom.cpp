@@ -66,66 +66,6 @@ void Bracket::display(int indent) {
     std::cout << ")" << std::endl;
 }
 
-Data *Bracket::eval(Runtime *runtime) {
-    runtime->pushVarEnv();
-    Data* result;
-    if (func == "+") {
-        result = Data::plus(genParaData(runtime));
-    } else if (func == "*") {
-        result = Data::times(genParaData(runtime));
-    } else if (func == "-") {
-        result = Data::minus(genParaData(runtime));
-    } else if (func == "=") {
-        result = Data::equal(genParaData(runtime));
-    } else if (func == ">") {
-        result = Data::bigger(genParaData(runtime));
-    } else if (func == "<") {
-        result = Data::smaller(genParaData(runtime));
-    } else if (func == "print") {
-        result = Data::print(genParaData(runtime));
-    } else if (func == "assign") {
-        runtime->assignVar( ((Symbol*)(*para.begin()))->name,
-                            (*(++para.begin()))->eval(runtime) );
-        result = new Data("true");
-    } else if (func == "begin") {
-        auto temp = genParaData(runtime);
-        auto cursor = temp->begin();
-        while (cursor != --temp->end()) {
-            Data::check(*cursor);
-            cursor++;
-        }
-        result = temp->back();
-        delete temp;
-    } else if (func == "if") {
-        auto cursor = para.begin();
-        auto temp = (*cursor)->eval(runtime);
-        if (temp->type) {
-            cursor++;
-            result = (*cursor)->eval(runtime);
-        } else {
-            cursor++;
-            cursor++;
-            result = (*cursor)->eval(runtime);
-        }
-        Data::check(temp);
-    } else if (func == "function") {
-        Function::newFunction(&para);
-        result = new Data("true");
-    } else {
-        result = Function::call(func, genParaData(runtime));
-    }
-    runtime->popVarEnv();
-    return result;
-}
-
-std::list<Data *> *Bracket::genParaData(Runtime *runtime) {
-    auto result = new std::list<Data*>;
-    for (auto & i: para) {
-        result->push_back(i->eval(runtime));
-    }
-    return result;
-}
-
 Atom *Bracket::copy() {
     auto result = new Bracket();
     result->func = func;
@@ -136,6 +76,28 @@ Atom *Bracket::copy() {
 }
 
 Bracket::Bracket() { }
+
+Data *Bracket::eval(Runtime *runtime) {
+    runtime->pushVarEnv();
+    Data* result;
+    if (func == "+") {
+        result = Data::plus(genParaData(runtime));
+    } else result = NULL;
+    runtime->popVarEnv();
+    return result;
+}
+
+std::vector<Data *> *Bracket::genParaData(Runtime *runtime) {
+    auto result = new std::vector<Data*>(para.size());
+    auto cursor = para.begin();
+    auto i = 0;
+    while (cursor != para.end()) {
+        (*result)[i] = (*cursor)->eval(runtime);
+        cursor++;
+        i++;
+    }
+    return result;
+}
 
 Symbol::Symbol(const std::string &str) {
     name = str;
@@ -149,16 +111,15 @@ void Symbol::display(int indent) {
     std::cout << name << std::endl;
 }
 
+Atom *Symbol::copy() {
+    return new Symbol(name);
+}
+
 Data *Symbol::eval(Runtime *runtime) {
-    if (name[0] == '-' || (name[0] <= '9' && name[0] >= '0') ) {
-        return new Data(name);
-    } else if (name == "true" || name == "false") {
-        return new Data(name);
+    auto result = Data::newData(name);
+    if (result != NULL) {
+        return result;
     } else {
         return runtime->getVar(name);
     }
-}
-
-Atom *Symbol::copy() {
-    return new Symbol(name);
 }

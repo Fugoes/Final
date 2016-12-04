@@ -9,14 +9,16 @@ class Atom;
 class Bracket;
 class Symbol;
 
+#include <vector>
 #include <iostream>
 #include <string>
 #include <list>
 #include <cassert>
+
+#include "Data.h"
 #include "Runtime.h"
 #include "Function.h"
-#include "Atom.h"
-//#include "VarEnv.h"
+#include "VarEnv.h"
 
 class Atom {
 public:
@@ -39,7 +41,7 @@ private:
     std::string func;
     std::list<Atom*> para;
 
-    std::list<Data*>* genParaData(Runtime *runtime);
+    std::vector<Data*>* genParaData(Runtime *runtime);
 
     friend class Runtime;
     friend class Function;

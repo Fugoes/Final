@@ -17,7 +17,7 @@ public:
     Runtime();
     ~Runtime();
     void assignVar(std::string & name, Data* data);
-    void assingVarToTop(std::string & name, Data* data);
+    void assignVarToTop(std::string & name, Data* data);
     Data* getVar(std::string & name);
     void pushVarEnv();
     void popVarEnv();
