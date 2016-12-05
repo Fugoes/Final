@@ -36,7 +36,6 @@ void VarEnv::assignVar(const std::string &name, Data *data) {
 
 void VarEnv::display() {
     for (auto &i: vars) {
-        std::cout << std::endl;
         std::cout << "name : " << i.first << std::endl;
         i.second->display();
     }
