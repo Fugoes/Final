@@ -153,6 +153,10 @@ true
 
 What's more, you could only using `set` on an integer.
 
+* `(get <variable's name>)`
+
+  Return the value of the variable.
+
 ## Define function
 
 Here is an example:
