@@ -97,6 +97,10 @@ Data *Bracket::eval(Runtime *runtime) {
         result = Data::mod(genParaData(runtime));
     } else if (func == "=") {
         result = Data::equal(genParaData(runtime));
+    } else if (func == "set") {
+        runtime->setVar(((Symbol *) (*para.begin()))->name,
+                        (*(++para.begin()))->eval(runtime));
+        result = Data::trueData;
     } else if (func == "assign") {
         runtime->assignVar(((Symbol *) (*para.begin()))->name,
                            (*(++para.begin()))->eval(runtime));

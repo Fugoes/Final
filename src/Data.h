@@ -93,6 +93,8 @@ private:
     long value;
 
     friend class Data;
+
+    friend class Runtime;
 };
 
 class Bool : public Data {
@@ -113,6 +115,8 @@ private:
     friend class Data;
 
     friend class Bracket;
+
+    friend class Runtime;
 };
 
 #endif //FINAL_DATANEW_H

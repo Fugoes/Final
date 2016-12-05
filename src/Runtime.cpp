@@ -16,6 +16,15 @@ Runtime::~Runtime() {
     }
 }
 
+void Runtime::setVar(std::string &name, Data *data) {
+    auto target = getVar(name);
+    if ((dynamic_cast<Integer *>(target)) != NULL) {
+        ((Integer *) target)->value = ((Integer *) data)->value;
+    } else {
+        ((Bool *) target)->value = ((Bool *) data)->value;
+    }
+}
+
 void Runtime::assignVar(std::string &name, Data *data) {
     auto cursor = varEnvs.begin();
     cursor++;
@@ -64,3 +73,4 @@ void Runtime::display() {
         }
     }
 }
+

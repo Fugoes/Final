@@ -22,6 +22,8 @@ public:
 
     void assignVarToTop(std::string &name, Data *data);
 
+    void setVar(std::string &name, Data *data);
+
     Data *getVar(std::string &name);
 
     void pushVarEnv();
