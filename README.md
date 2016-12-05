@@ -76,6 +76,8 @@ The binary file will be `Final` under linux and `Final.exe` under Windows.
 
   Assign a to 5. Similar to `=` in python.
 
+* `(set a 5)`
+
 In `Final`, each bracket has its own variable scope, for example:
 
 ```
@@ -94,6 +96,63 @@ true
 2
 true
 ```
+
+The difference between `assign` and `set` could be demonstrated with this example:
+
+```
+>>> (assign a 2)
+true
+>>> (assign b a)
+true
+>>> (runtime)
+
+name : a
+cited: 2
+type : Integer
+value: 2
+
+
+name : b
+cited: 2
+type : Integer
+value: 2
+
+true
+>>> (set a 4)
+true
+>>> (runtime)
+
+name : a
+cited: 2
+type : Integer
+value: 4
+
+
+name : b
+cited: 2
+type : Integer
+value: 4
+
+true
+>>> (assign a 2)
+true
+>>> (runtime)
+
+name : a
+cited: 1
+type : Integer
+value: 2
+
+
+name : b
+cited: 1
+type : Integer
+value: 4
+
+true
+```
+
+
 
 ## Define function
 
