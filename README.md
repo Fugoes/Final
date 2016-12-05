@@ -127,7 +127,6 @@ cited: 2
 type : Integer
 value: 4
 
-
 name : b
 cited: 2
 type : Integer
@@ -152,7 +151,7 @@ value: 4
 true
 ```
 
-
+What's more, you could only using `set` on an integer.
 
 ## Define function
 
