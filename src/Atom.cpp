@@ -101,8 +101,8 @@ Data *Bracket::eval(Runtime *runtime) {
         runtime->setVar(((Symbol *) (*para.begin()))->name,
                         (*(++para.begin()))->eval(runtime));
         result = Data::trueData;
-    } else if (func == "get") {
-        result = runtime->getVar(((Symbol *) (*para.begin()))->name);
+    } else if (func == "echo") {
+        result = (*para.begin())->eval(runtime);
     } else if (func == "assign") {
         runtime->assignVar(((Symbol *) (*para.begin()))->name,
                            (*(++para.begin()))->eval(runtime));

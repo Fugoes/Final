@@ -153,9 +153,9 @@ true
 
 What's more, you could only using `set` on an integer.
 
-* `(get <variable's name>)`
+* `(echo <expression>)`
 
-  Return the value of the variable.
+  Return the value of the expression.
 
 ## Define function
 
