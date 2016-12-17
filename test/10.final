@@ -1,0 +1,7 @@
+(assign a 2)
+(assign b a)
+(runtime)
+(set a 4)
+(runtime)
+(assign a 2)
+(runtime)

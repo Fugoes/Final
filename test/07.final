@@ -1,0 +1,5 @@
+(print (begin (assign a 1)
+        (if (= 1 1)
+         (assign a 2)
+         (assign a 3))
+        (echo 1)))

@@ -1,0 +1,8 @@
+(assign a 2)
+(assign b 4)
+(runtime)
+(begin (assign a 3)
+       (runtime))
+(runtime)
+(display a)
+(display b)

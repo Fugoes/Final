@@ -1,0 +1,4 @@
+(function (test a b)
+          (begin (print a) (print b))
+          (+ a b))
+(print (test 1 2))

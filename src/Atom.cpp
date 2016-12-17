@@ -109,21 +109,17 @@ Data *Bracket::eval(Runtime *runtime) {
         result = Data::trueData;
     } else if (func == "begin") {
         auto temp = genParaData(runtime);
-        auto cursor = temp->begin();
-        while (cursor != --temp->end()) {
-            Data::check(*cursor);
-            cursor++;
-        }
-        result = temp->back();
         for (auto i = 0; i < temp->size() - 1; i++) {
             Data::check((*temp)[i]);
         }
+        result = (*temp)[temp->size()-1];
         delete temp;
     } else if (func == "print") {
         result = Data::print(genParaData(runtime));
     } else if (func == "display") {
-        result = Data::display(genParaData(runtime));
-    } else if (func == "if") {
+        result = Data::display(genParaData(runtime)); } else if (func == "if") {
+
+
         auto cursor = para.begin();
         auto temp = (*cursor)->eval(runtime);
         Bool *judge = dynamic_cast<Bool *>(temp);
