@@ -4,7 +4,7 @@
 #include "Atom.h"
 
 int main(int argc, char *argv[]) {
-    if (argc == 0) {
+    if (argc == 1) {
         Code::FinalShell();
     } else {
         auto runtime = new Runtime();
