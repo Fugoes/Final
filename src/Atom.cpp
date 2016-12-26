@@ -117,9 +117,8 @@ Data *Bracket::eval(Runtime *runtime) {
     } else if (func == "print") {
         result = Data::print(genParaData(runtime));
     } else if (func == "display") {
-        result = Data::display(genParaData(runtime)); } else if (func == "if") {
-
-
+        result = Data::display(genParaData(runtime)); 
+    } else if (func == "if") {
         auto cursor = para.begin();
         auto temp = (*cursor)->eval(runtime);
         Bool *judge = dynamic_cast<Bool *>(temp);
