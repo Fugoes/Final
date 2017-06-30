@@ -164,7 +164,7 @@ Here is an example:
 ```
 >>> (function (fbi n)
 ...           (if (< n 2)
-...               (echo 1)
+...               1
 ...               (+ (fbi (- n 1)) (fbi (- n 2)))))
 true
 >>> (fbi 10)
